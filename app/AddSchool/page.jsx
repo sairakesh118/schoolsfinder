@@ -61,8 +61,6 @@ export default function AddSchool() {
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
-
-    // Create preview
     const reader = new FileReader();
     reader.onload = (e) => setImagePreview(e.target.result);
     reader.readAsDataURL(file);
@@ -136,7 +134,6 @@ export default function AddSchool() {
         <div className="flex flex-col justify-center items-center">
           <Navbar />
         </div>
-        {/* Header */}
         <div className="text-center mb-12 mt-10" style={{
           animation: 'fadeInSlideDown 0.7s ease-out'
         }}>
@@ -149,7 +146,6 @@ export default function AddSchool() {
           <p className="text-gray-600 text-lg">Register your educational institution</p>
         </div>
 
-        {/* Success/Error Messages */}
         {message && (
           <div className={`mb-8 p-6 rounded-2xl ${
             message === "success" 
@@ -172,14 +168,11 @@ export default function AddSchool() {
             </div>
           </div>
         )}
-
-        {/* Form Container */}
         <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-8 shadow-2xl shadow-black/10 border border-white/20" style={{
           animation: 'fadeInSlideUp 0.7s ease-out'
         }}>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
             
-            {/* School Name */}
             <div style={{ animation: 'slideInFromLeft 0.5s ease-out 0.1s both' }}>
               <label className="block text-sm font-semibold text-gray-700 mb-3">
                 School Name
@@ -192,8 +185,6 @@ export default function AddSchool() {
                 error={errors.name}
               />
             </div>
-
-            {/* Address */}
             <div style={{ animation: 'slideInFromLeft 0.5s ease-out 0.2s both' }}>
               <label className="block text-sm font-semibold text-gray-700 mb-3">
                 Address
@@ -206,8 +197,6 @@ export default function AddSchool() {
                 error={errors.address}
               />
             </div>
-
-            {/* City and State */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div style={{ animation: 'slideInFromLeft 0.5s ease-out 0.3s both' }}>
                 <label className="block text-sm font-semibold text-gray-700 mb-3">
@@ -235,7 +224,6 @@ export default function AddSchool() {
               </div>
             </div>
 
-            {/* Contact and Email */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div style={{ animation: 'slideInFromLeft 0.5s ease-out 0.4s both' }}>
                 <label className="block text-sm font-semibold text-gray-700 mb-3">
@@ -277,7 +265,6 @@ export default function AddSchool() {
               </div>
             </div>
 
-            {/* Image Upload */}
             <div style={{ animation: 'slideInFromBottom 0.5s ease-out 0.5s both' }}>
               <label className="block text-sm font-semibold text-gray-700 mb-3">
                 School Image
@@ -326,7 +313,6 @@ export default function AddSchool() {
                   )}
                 </label>
                 
-                {/* Hidden input for form validation */}
                 <input
                   type="hidden"
                   {...register("image", { required: "School image is required" })}
@@ -341,7 +327,6 @@ export default function AddSchool() {
               </div>
             </div>
 
-            {/* Submit Button */}
             <div style={{ animation: 'slideInFromBottom 0.5s ease-out 0.6s both' }}>
               <button
                 type="submit"
@@ -367,7 +352,6 @@ export default function AddSchool() {
         </div>
       </div>
       
-      {/* CSS Animations */}
       <style jsx>{`
         @keyframes fadeInSlideDown {
           from {

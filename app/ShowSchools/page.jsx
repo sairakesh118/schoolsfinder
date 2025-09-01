@@ -55,7 +55,6 @@ export default function ShowSchools() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
-      {/* Header */}
       <div className="bg-white shadow-lg border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-6 py-8">
           <div className="flex items-center gap-3 mb-6">
@@ -68,10 +67,8 @@ export default function ShowSchools() {
             </div>
           </div>
 
-          {/* Search and Filters */}
           <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
             <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
-              {/* Search Bar */}
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
                 <input
@@ -83,7 +80,6 @@ export default function ShowSchools() {
                 />
               </div>
 
-              {/* City Filter */}
               <div className="relative">
                 <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
                 <select
@@ -99,7 +95,6 @@ export default function ShowSchools() {
               </div>
             </div>
 
-            {/* View Toggle */}
             <div className="flex items-center gap-2 bg-gray-100 p-1 rounded-lg">
               <button
                 onClick={() => setViewMode("grid")}
@@ -124,14 +119,12 @@ export default function ShowSchools() {
             </div>
           </div>
 
-          {/* Results Count */}
           <div className="mt-4 text-gray-600">
             Showing {filteredSchools.length} of {schools.length} schools
           </div>
         </div>
       </div>
 
-      {/* Schools Grid/List */}
       <div className="max-w-7xl mx-auto px-6 py-8">
         {filteredSchools.length === 0 ? (
           <div className="text-center py-16">

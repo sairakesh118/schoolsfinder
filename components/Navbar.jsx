@@ -3,12 +3,12 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, Home, User, Briefcase, Mail } from "lucide-react";
+import { Menu, X, Home, User, Briefcase, Mail, BookOpen } from "lucide-react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const pathname = usePathname(); // ✅ current route
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,15 +39,15 @@ const Navbar = () => {
     >
       <div className="max-w-6xl mx-auto px-6">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3">
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-semibold text-sm">SF</span>
+          <div className="flex items-center space-x-2">
+            <div className="w-8 h-8 bg-gradient-to-r from-indigo-600 to-cyan-600 rounded-lg flex items-center justify-center">
+              <BookOpen className="w-5 h-5 text-white" />
             </div>
-            <span className="text-gray-900 font-semibold text-lg">School Finder</span>
-          </Link>
+            <span className="text-xl font-bold bg-gradient-to-r from-indigo-600 to-cyan-600 bg-clip-text text-transparent">
+              SchoolFinder
+            </span>
+          </div>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1">
             {navItems.map((item, index) => {
               const isActive = pathname === item.href;
@@ -69,7 +69,6 @@ const Navbar = () => {
             })}
           </div>
 
-          {/* CTA Button */}
           <div className="hidden md:block">
             <Link
               href="/ShowSchools"
@@ -79,8 +78,6 @@ const Navbar = () => {
               Get Started
             </Link>
           </div>
-
-          {/* Mobile Menu Button */}
           <button
             onClick={toggleMenu}
             className="md:hidden text-gray-700 hover:text-blue-600 transition-colors duration-200"
@@ -89,7 +86,6 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* Mobile Menu */}
         <div
           className={`md:hidden transition-all duration-300 ease-out ${
             isOpen ? "max-h-80 opacity-100 pb-4" : "max-h-0 opacity-0"

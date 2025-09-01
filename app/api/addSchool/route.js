@@ -8,8 +8,7 @@ export async function POST(req) {
     if (!name || !address || !city || !state || !contact || !image || !email_id) {
       return new Response(JSON.stringify({ error: "All fields are required" }), { status: 400 });
     }
-
-    // Use $1, $2... instead of ?
+    
     const query = `
       INSERT INTO schools (name, address, city, state, contact, image, email_id)
       VALUES ($1, $2, $3, $4, $5, $6, $7)
