@@ -1,11 +1,11 @@
-import mysql from "mysql2/promise";
+// lib/db.js
+import { Pool } from "pg";
 
-// Create a connection pool (better than single connection)
-const pool = mysql.createPool({
-  host: "localhost",       // your MySQL host (use your cloud/db IP or "localhost")
-  user: "root",            // your MySQL username
-  password: "root",    // your MySQL password
-  database: "schooldb",    // your database name
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL, // from Neon
+  ssl: {
+    rejectUnauthorized: false, // required for Neon SSL
+  },
 });
 
 export default pool;

@@ -1,5 +1,4 @@
 import pool from "@/app/lib/db";
-import { NextResponse } from "next/server";
 
 export async function POST(req) {
   try {
@@ -7,20 +6,25 @@ export async function POST(req) {
     const { name, address, city, state, contact, image, email_id } = body;
 
     if (!name || !address || !city || !state || !contact || !image || !email_id) {
-      return NextResponse.json({ error: "All fields are required" }, { status: 400 });
+      return new Response(JSON.stringify({ error: "All fields are required" }), { status: 400 });
     }
 
-    const [result] = await pool.query(
-      "INSERT INTO schools (name, address, city, state, contact, image, email_id) VALUES (?, ?, ?, ?, ?, ?, ?)",
-      [name, address, city, state, contact, image, email_id]
-    );
+    // Use $1, $2... instead of ?
+    const query = `
+      INSERT INTO schools (name, address, city, state, contact, image, email_id)
+      VALUES ($1, $2, $3, $4, $5, $6, $7)
+      RETURNING id;
+    `;
 
-    return NextResponse.json(
-      { message: "School added successfully", id: result.insertId },
+    const values = [name, address, city, state, contact, image, email_id];
+    const result = await pool.query(query, values);
+
+    return new Response(
+      JSON.stringify({ message: "School added", id: result.rows[0].id }),
       { status: 200 }
     );
-  } catch (error) {
-    console.error(error);
-    return NextResponse.json({ error: "Database error" }, { status: 500 });
+  } catch (err) {
+    console.error("DB Error:", err);
+    return new Response(JSON.stringify({ error: "Database error" }), { status: 500 });
   }
 }

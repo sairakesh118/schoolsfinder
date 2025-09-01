@@ -31,7 +31,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
           ? "bg-white/95 backdrop-blur-md shadow-lg"
           : "bg-white/80 backdrop-blur-sm"
@@ -42,24 +42,24 @@ const Navbar = () => {
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3">
             <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-semibold text-sm">B</span>
+              <span className="text-white font-semibold text-sm">SF</span>
             </div>
-            <span className="text-gray-900 font-semibold text-lg">Brand</span>
+            <span className="text-gray-900 font-semibold text-lg">School Finder</span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-1">
             {navItems.map((item, index) => {
               const isActive = pathname === item.href;
               return (
                 <Link
                   key={index}
                   href={item.href}
-                  className={`flex items-center space-x-2 px-4 py-2 rounded-xl font-medium transition-all duration-200 ease-in-out transform hover:scale-105 hover:shadow-lg group
+                  className={`flex items-center space-x-2 px-4 py-2 rounded-lg font-medium transition-colors duration-200
                     ${
                       isActive
-                        ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white"
-                        : "text-gray-700 hover:text-blue-600 hover:bg-gray-100"
+                        ? "bg-blue-100 text-blue-700"
+                        : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
                     }`}
                 >
                   <item.icon size={16} />
@@ -73,8 +73,8 @@ const Navbar = () => {
           <div className="hidden md:block">
             <Link
               href="/ShowSchools"
-              className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded-xl font-medium 
-                         hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+              className="bg-blue-600 text-white px-6 py-2 rounded-lg font-medium 
+                         hover:bg-blue-700 transition-colors duration-200"
             >
               Get Started
             </Link>
@@ -83,7 +83,7 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMenu}
-            className="md:hidden text-gray-700 hover:text-blue-600 transition-colors duration-300"
+            className="md:hidden text-gray-700 hover:text-blue-600 transition-colors duration-200"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -95,7 +95,7 @@ const Navbar = () => {
             isOpen ? "max-h-80 opacity-100 pb-4" : "max-h-0 opacity-0"
           } overflow-hidden`}
         >
-          <div className="pt-4 space-y-2 border-t border-gray-200">
+          <div className="pt-4 space-y-1 border-t border-gray-200">
             {navItems.map((item, index) => {
               const isActive = pathname === item.href;
               return (
@@ -103,10 +103,10 @@ const Navbar = () => {
                   key={index}
                   href={item.href}
                   onClick={() => setIsOpen(false)}
-                  className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 
+                  className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors duration-200 
                     ${
                       isActive
-                        ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white"
+                        ? "bg-blue-100 text-blue-700"
                         : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
                     }`}
                 >
@@ -119,8 +119,8 @@ const Navbar = () => {
               <Link
                 href="/ShowSchools"
                 onClick={() => setIsOpen(false)}
-                className="block w-full text-center bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-3 rounded-lg 
-                           font-medium hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+                className="block w-full text-center bg-blue-600 text-white px-4 py-3 rounded-lg 
+                           font-medium hover:bg-blue-700 transition-colors duration-200"
               >
                 Get Started
               </Link>
